@@ -1,0 +1,421 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "lookup_reservation",
+   "description": "Find the guest's reservation. Before identity is verified only an exact confirmation number works.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "query"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "verify_identity",
+   "description": "Verify the guest with the last 4 digits of the phone on file. 3 failures lock the reservation for 15 minutes.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "last4": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "last4"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "assign_room",
+   "description": "Assign a room (same room type or lower).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "room_number": {
+      "type": "string"
+     },
+     "room_type": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "complete_checkin",
+   "description": "Finish check-in after the registration card is signed.",
+   "parameters": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "dispense_key",
+   "description": "Encode room keys for the checked-in guest. Max 4 per stay.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "count"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "confirm_intent",
+   "description": "Record the guest's explicit answer to the action you just read back. Call in the same turn as the action.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "action": {
+      "type": "string",
+      "enum": [
+       "post_charge",
+       "comp_charge",
+       "process_checkout",
+       "book_service"
+      ]
+     },
+     "amount": {
+      "type": "number"
+     },
+     "answer": {
+      "type": "string",
+      "enum": [
+       "yes",
+       "no"
+      ]
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "action",
+     "answer"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "post_charge",
+   "description": "Post a charge to the guest's folio (max $100).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "amount": {
+      "type": "number"
+     },
+     "category": {
+      "type": "string",
+      "enum": [
+       "room_service",
+       "minibar",
+       "spa",
+       "parking",
+       "incidentals",
+       "other"
+      ]
+     },
+     "description": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "amount",
+     "category",
+     "description"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "comp_charge",
+   "description": "Waive a charge (max $100, 3 per session).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "amount": {
+      "type": "number"
+     },
+     "reason": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "amount",
+     "reason"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "checkout",
+   "description": "Check the guest out.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "text_receipt": {
+      "type": "boolean"
+     }
+    },
+    "additionalProperties": false
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "housekeeping_request",
+   "description": "Ask housekeeping for something.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "enum": [
+       "towels",
+       "cleaning",
+       "turndown",
+       "minibar_restock"
+      ]
+     },
+     "notes": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "type"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "set_wakeup_call",
+   "description": "Schedule a wake-up call (24h HH:MM, 05:00-23:00).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "time": {
+      "type": "string",
+      "description": "HH:MM 24h"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "time"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "check_service",
+   "description": "Check availability of a hotel service on a date.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "service": {
+      "type": "string"
+     },
+     "date": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "service",
+     "date"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "book_service",
+   "description": "Book a hotel service.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "service": {
+      "type": "string"
+     },
+     "date": {
+      "type": "string"
+     },
+     "time": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "service",
+     "date",
+     "time"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "cancel_service",
+   "description": "Cancel a booked service.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "booking_id": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "booking_id"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "send_sms",
+   "description": "Text the guest. Only the phone number on file can receive texts.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "phone": {
+      "type": "string"
+     },
+     "message": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "phone",
+     "message"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "email_document",
+   "description": "Email a document to the guest's email on file (there is no recipient argument).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "document_type": {
+      "type": "string",
+      "enum": [
+       "confirmation",
+       "receipt"
+      ]
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "document_type"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "escalate",
+   "description": "Hand the conversation to staff.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "reason": {
+      "type": "string",
+      "enum": [
+       "complaint",
+       "billing",
+       "vip",
+       "ada_request",
+       "allergy_safety",
+       "payment_processing",
+       "manager_override",
+       "identity_verification",
+       "reservation_lookup",
+       "rate_dispute",
+       "safety",
+       "payment_failure",
+       "maintenance"
+      ]
+     },
+     "note": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "reason"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "transfer_call",
+   "description": "Log a request to transfer a phone call.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "reason": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "reason"
+    ]
+   }
+  }
+ }
+]

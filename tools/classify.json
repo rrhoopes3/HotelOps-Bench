@@ -1,0 +1,29 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "classify_ticket",
+      "description": "Emit the ticket intent, disposition, and whether to escalate. Not the customer-facing email.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "intent": {
+            "type": "string",
+            "description": "Two to six words naming what the customer wants, e.g. \"reset password\", \"refund request\", \"MX not verifying\"."
+          },
+          "disposition": {
+            "type": "string",
+            "enum": ["answer", "escalate", "unanswerable"],
+            "description": "answer = the knowledge base covers it; escalate = a human must act (policy, billing, legal, anger); unanswerable = not a product question or no facts available."
+          },
+          "escalate": {
+            "type": "boolean",
+            "description": "true when a human should see this thread even if an answer was drafted."
+          }
+        },
+        "required": ["intent", "disposition", "escalate"],
+        "additionalProperties": false
+      }
+    }
+  }
+]

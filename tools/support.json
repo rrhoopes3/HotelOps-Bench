@@ -1,0 +1,67 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "classify_ticket",
+   "description": "Emit the ticket intent, disposition, and whether to escalate. Not the customer-facing email.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "intent": {
+      "type": "string",
+      "description": "Two to six words naming what the customer wants."
+     },
+     "disposition": {
+      "type": "string",
+      "enum": [
+       "answer",
+       "escalate",
+       "unanswerable"
+      ]
+     },
+     "escalate": {
+      "type": "boolean"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "intent",
+     "disposition",
+     "escalate"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "plan_reply",
+   "description": "Choose the shape of the reply email before it is written.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "shape": {
+      "type": "string",
+      "enum": [
+       "answer",
+       "ask_clarifying",
+       "handoff",
+       "redirect_other_product",
+       "refuse_spam",
+       "refuse_inappropriate"
+      ]
+     },
+     "language": {
+      "type": "string",
+      "description": "ISO 639-1 code of the reply language"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "shape",
+     "language"
+    ]
+   }
+  }
+ }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "lookup_reservation",
+      "description": "Look up a reservation by confirmation number. Call this when the guest provides a confirmation code.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "confirmation_number": {
+            "type": "string",
+            "description": "Guest confirmation code, e.g. HDM-EV01HP."
+          }
+        },
+        "required": ["confirmation_number"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "verify_identity",
+      "description": "Verify the guest by the last four digits of the booking phone. Call only after a reservation is bound.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "last4": {
+            "type": "string",
+            "description": "Exactly four digits, keep leading zeros as a string."
+          }
+        },
+        "required": ["last4"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "assign_room",
+      "description": "Assign a vacant room after identity is verified. Do not assign before verify_identity succeeds.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "preference": {
+            "type": "string",
+            "description": "Optional room preference such as high floor. Empty or omitted means any room."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "complete_checkin",
+      "description": "Finish check-in after the registration card is signed and a room is assigned.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "confirmation_number": {
+            "type": "string"
+          }
+        },
+        "required": ["confirmation_number"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "dispense_key",
+      "description": "Encode and dispense a room key after check-in is complete.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "room_number": {
+            "type": "string"
+          }
+        },
+        "required": ["room_number"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "email_document",
+      "description": "Email a confirmation, folio, or receipt. Identity must already be verified.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "enum": ["confirmation", "folio", "receipt"]
+          }
+        },
+        "required": ["document_type"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "escalate",
+      "description": "Hand the guest to a human. Use for lockout, cancelled or no-show stays, rate disputes, and manager requests.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "enum": [
+              "identity_verification",
+              "manager_override",
+              "reservation_lookup",
+              "rate_dispute",
+              "other"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": ["reason"],
+        "additionalProperties": false
+      }
+    }
+  }
+]

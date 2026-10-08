@@ -1,0 +1,394 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "check_availability",
+   "description": "Available rooms for a stay at this key's property. Returns room_id (UUID), room_number, room_type, nightly_rate_cents.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "check_in": {
+      "type": "string",
+      "description": "YYYY-MM-DD"
+     },
+     "check_out": {
+      "type": "string",
+      "description": "YYYY-MM-DD"
+     },
+     "adults": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "children": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "room_type_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "hotel_id": {
+      "type": "string",
+      "description": "UUID. Must equal this key's property; omit it."
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "check_in",
+     "check_out",
+     "adults",
+     "children"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_reservation",
+   "description": "Look up reservations by confirmation number or exact guest email (max 10).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "confirmation_number": {
+      "type": "string"
+     },
+     "guest_email": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "list_housekeeping_assignments",
+   "description": "List housekeeping assignments.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "statuses": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "enum": [
+        "open",
+        "assigned",
+        "in_progress",
+        "blocked",
+        "completed",
+        "cancelled"
+       ]
+      }
+     },
+     "include_closed": {
+      "type": "boolean"
+     },
+     "room_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "room_number": {
+      "type": "string"
+     },
+     "reservation_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+     }
+    },
+    "additionalProperties": false
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "create_reservation",
+   "description": "Create a reservation. room_id must be a UUID from check_availability.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "guest": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "email": {
+        "type": "string"
+       },
+       "phone": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "name"
+      ],
+      "additionalProperties": false
+     },
+     "check_in": {
+      "type": "string",
+      "description": "YYYY-MM-DD"
+     },
+     "check_out": {
+      "type": "string",
+      "description": "YYYY-MM-DD"
+     },
+     "room_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "rate_code": {
+      "type": "string"
+     },
+     "source": {
+      "type": "string"
+     },
+     "adults": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "children": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "pets": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 99
+     },
+     "license_plate": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "guest",
+     "check_in",
+     "check_out",
+     "room_id",
+     "rate_code",
+     "source"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "modify_reservation",
+   "description": "Change an existing reservation (pending, confirmed or checked-in). Put every change in one call.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "confirmation_number": {
+      "type": "string"
+     },
+     "changes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "check_in": {
+        "type": "string",
+        "description": "YYYY-MM-DD"
+       },
+       "check_out": {
+        "type": "string",
+        "description": "YYYY-MM-DD"
+       },
+       "room_id": {
+        "type": "string",
+        "description": "UUID"
+       },
+       "room_type_id": {
+        "type": "string",
+        "description": "UUID"
+       },
+       "rate_code": {
+        "type": "string"
+       },
+       "adults": {
+        "type": "integer"
+       },
+       "children": {
+        "type": "integer"
+       },
+       "pets": {
+        "type": "integer"
+       },
+       "license_plate": {
+        "type": "string"
+       },
+       "notes": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "confirmation_number",
+     "changes"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "cancel_reservation",
+   "description": "Step 1 of 2: request cancellation. Returns pending_cancel_token (15 min).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "confirmation_number": {
+      "type": "string"
+     },
+     "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "confirmation_number",
+     "reason"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "confirm_cancel",
+   "description": "Step 2 of 2: confirm a pending cancellation with its token.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "pending_cancel_token": {
+      "type": "string",
+      "minLength": 24
+     },
+     "approval_id": {
+      "type": "string"
+     },
+     "override_refund_limit": {
+      "type": "boolean"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "pending_cancel_token"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "schedule_housekeeping",
+   "description": "Schedule a housekeeping task.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+     },
+     "event_type": {
+      "type": "string"
+     },
+     "message": {
+      "type": "string"
+     },
+     "room_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "room_number": {
+      "type": "string"
+     },
+     "reservation_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "confirmation_number": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "normal",
+       "high",
+       "urgent"
+      ]
+     },
+     "due_at": {
+      "type": "string",
+      "description": "ISO 8601 datetime"
+     },
+     "notes": {
+      "type": "string"
+     },
+     "idempotency_key": {
+      "type": "string",
+      "maxLength": 240
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "summary"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "propose_rate_change",
+   "description": "Propose a rate for one stay date on a room type + rate plan. Staff approve it; it is not live until then.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "room_type_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "rate_plan_id": {
+      "type": "string",
+      "description": "UUID"
+     },
+     "stay_date": {
+      "type": "string",
+      "description": "YYYY-MM-DD"
+     },
+     "proposed_rate_cents": {
+      "type": "integer",
+      "minimum": 100
+     },
+     "reason": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false,
+    "required": [
+     "room_type_id",
+     "rate_plan_id",
+     "stay_date",
+     "proposed_rate_cents",
+     "reason"
+    ]
+   }
+  }
+ }
+]

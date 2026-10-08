@@ -1,0 +1,102 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "lookup_reservation",
+      "description": "Look up a reservation by confirmation number.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "confirmation_number": { "type": "string" }
+        },
+        "required": ["confirmation_number"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "verify_identity",
+      "description": "Verify the guest by the last four digits of the booking phone.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "last4": { "type": "string" }
+        },
+        "required": ["last4"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "assign_room",
+      "description": "Assign a vacant room after identity is verified.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "preference": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "complete_checkin",
+      "description": "Finish check-in after the registration card is signed.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "confirmation_number": { "type": "string" }
+        },
+        "required": ["confirmation_number"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "escalate",
+      "description": "Hand the guest to a human.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "enum": [
+              "identity_verification",
+              "manager_override",
+              "reservation_lookup",
+              "rate_dispute",
+              "other"
+            ]
+          },
+          "note": { "type": "string" }
+        },
+        "required": ["reason"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "post_charge",
+      "description": "Post a dollar amount to the guest folio. High-stakes. Do not call unless a staff member has already confirmed the amount in a separate yes/no turn.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "amount": { "type": "number" },
+          "description": { "type": "string" }
+        },
+        "required": ["amount"],
+        "additionalProperties": false
+      }
+    }
+  }
+]
