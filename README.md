@@ -32,6 +32,7 @@ The hotel, products, email addresses and IDs are fictional.
 | Anthropic (`claude-*`) | Messages, `tool_use` | `output_config.effort`; `:cache` variant adds `cache_control` |
 | xAI (`grok-*`) | Chat Completions, `tool_calls` | `reasoning_effort` |
 | OpenAI (`gpt-*`) | Responses, `store: false`, encrypted reasoning passed back between tool turns | `reasoning.effort`; `:fast` variant sets `service_tier` |
+| Meta (`muse-*`) | Responses at `api.meta.ai/v1`, handled like OpenAI; `max_output_tokens` 32000 because reasoning counts against it | `reasoning.effort` |
 
 Prices for cost columns live in `PRICES` in `harness.py`. Check them against the
 providers' current price pages before you quote a cost.
@@ -46,6 +47,7 @@ python3 harness.py --self-test          # offline: ideal transcripts pass, every
 export ANTHROPIC_API_KEY=...            # only the providers you name in --configs need a key
 export XAI_API_KEY=...
 export OPENAI_API_KEY=...
+export MODEL_API_KEY=...                # Meta Model API
 
 python3 harness.py --runs 3 --workers 2 \
   --configs claude-haiku-5-5:low,grok-4.3:high,gpt-6-luna:medium \

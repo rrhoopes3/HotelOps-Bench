@@ -20,6 +20,7 @@ from cases_workflows import WORKFLOW_CASES, WORKFLOW_PACK
 HERE = Path(__file__).resolve().parent
 TOOLS_DIR = HERE / "tools"
 OUT_DIR = HERE / "out"
+META_RESPONSES_URL = "https://api.meta.ai/v1/responses"
 
 PRICES = {
     "grok-4.7": {"in": 2.0, "out": 6.0, "cache_read": 0.50, "cache_write": 0.0},
@@ -37,6 +38,9 @@ PRICES = {
     # developers.openai.com/api/docs/pricing, Standard tier, short context (2026-10-08).
     "gpt-6-luna": {"in": 0.10, "out": 0.50, "cache_read": 0.01, "cache_write": 0.125},
     "gpt-5.6-sol": {"in": 4.00, "out": 20.00, "cache_read": 0.40, "cache_write": 5.00},
+    # Meta Model API (dev.meta.ai pricing, 2026-10-09). No cache-write charge listed.
+    "muse-spark-1.3": {"in": 1.25, "out": 4.25, "cache_read": 0.15, "cache_write": 0.0},
+    "muse-spark-1.3-contributor": {"in": 0.10, "out": 0.20, "cache_read": 0.002, "cache_write": 0.0},
     # OpenAI Fast tier (pricing page, short context, 2026-10-08): 2x standard.
     "gpt-6-luna+fast": {"in": 0.20, "out": 1.00, "cache_read": 0.02, "cache_write": 0.25},
 }
@@ -559,6 +563,11 @@ def make_adapter(cfg: dict, keys: dict):
             raise SystemExit("OPENAI_API_KEY is not set")
         return OpenAIAdapter(keys["openai"], cfg["model"], cfg["effort"],
                              service_tier="fast" if cfg.get("variant") == "fast" else None)
+    if cfg["provider"] == "meta":
+        if not keys.get("meta"):
+            raise SystemExit("MODEL_API_KEY is not set")
+        # Reasoning tokens count against max_output_tokens, so leave room.
+        return OpenAIAdapter(keys["meta"], cfg["model"], cfg["effort"], url=META_RESPONSES_URL, max_output_tokens=32000)
     raise ValueError(cfg["provider"])
 
 
@@ -889,6 +898,7 @@ PROVIDER_STYLE = {
     "anthropic": ("Anthropic", "#2a78d6"),
     "grok": ("xAI", "#eb6834"),
     "openai": ("OpenAI", "#1baf7a"),
+    "meta": ("Meta", "#8a5cd6"),
 }
 MODEL_NAMES = {
     "claude-haiku-5-5": "Haiku 5.5",
@@ -1374,6 +1384,7 @@ def load_keys() -> dict:
         "anthropic": os.environ.get("ANTHROPIC_API_KEY") or "",
         "xai": os.environ.get("XAI_API_KEY") or "",
         "openai": os.environ.get("OPENAI_API_KEY") or "",
+        "meta": os.environ.get("MODEL_API_KEY") or "",
     }
 
 
@@ -1394,6 +1405,8 @@ def parse_configs(text: str | None) -> list[dict]:
             out.append({"provider": "anthropic", "model": model, "effort": effort, "variant": variant})
         elif model.startswith("gpt-"):
             out.append({"provider": "openai", "model": model, "effort": effort, "variant": variant})
+        elif model.startswith("muse-"):
+            out.append({"provider": "meta", "model": model, "effort": effort, "variant": variant})
         else:
             raise SystemExit("unknown model in --configs: " + part)
     return out

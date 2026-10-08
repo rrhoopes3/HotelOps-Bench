@@ -480,8 +480,12 @@ class AnthropicAdapter:
 class OpenAIAdapter:
     """OpenAI Responses API. store=false; encrypted reasoning is round-tripped."""
 
-    def __init__(self, api_key: str, model: str, effort: str, timeout: float = 180.0, service_tier: str | None = None):
+    def __init__(self, api_key: str, model: str, effort: str, timeout: float = 180.0, service_tier: str | None = None,
+                 url: str | None = None, max_output_tokens: int | None = None):
         self.api_key = api_key
+        # Any OpenAI-compatible Responses endpoint (e.g. Meta's api.meta.ai/v1/responses).
+        self.url = url or OPENAI_RESPONSES_URL
+        self.max_output_tokens = max_output_tokens
         self.model = model
         self.effort = effort
         self.timeout = timeout
@@ -498,6 +502,8 @@ class OpenAIAdapter:
         }
         if self.service_tier:
             body["service_tier"] = self.service_tier
+        if self.max_output_tokens:
+            body["max_output_tokens"] = self.max_output_tokens
         if system:
             body["instructions"] = system
         if tools:
@@ -505,7 +511,7 @@ class OpenAIAdapter:
             body["tool_choice"] = "auto"
 
         headers = {"Authorization": "Bearer " + self.api_key}
-        status, parsed, elapsed = retrying_post(OPENAI_RESPONSES_URL, headers, body, self.timeout)
+        status, parsed, elapsed = retrying_post(self.url, headers, body, self.timeout)
         if status != 200 or not isinstance(parsed, dict) or parsed.get("error"):
             err = parsed
             if isinstance(parsed, dict) and parsed.get("error"):
