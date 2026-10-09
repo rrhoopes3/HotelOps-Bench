@@ -73,6 +73,7 @@ API keys are never written to output: request errors are redacted before logging
 | claude-haiku-5-5 + prompt caching | low / medium | 100% / 100% | 100% / 100% | 4.6s / 5.3s | $0.35 / $0.35 |
 | gpt-6-luna | low / medium | 100% / 100% | 97.2% / 100% | 5.1s / 5.5s | $0.15 / $0.17 |
 | muse-spark-1.3 | low / medium | 100% / 100% | 99.1% / 100% | 31.9s / 33.2s | $8.26 / $9.81 |
+| muse-spark-1.3-contributor | low / medium | 100% / 100% | 99.1% / 100% | 16.2s / 21.1s | $0.50 / $0.62 |
 | grok-4.6 | low / medium | 100% / 100% | 96.3% / 100% | 10.7s / 22.9s | $6.17 / $6.13 |
 | grok-4.3 | low / medium | 100% / 100% | 96.3% / 92.6% | 9.8s / 17.0s | $2.68 / $2.65 |
 

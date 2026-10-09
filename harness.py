@@ -912,6 +912,7 @@ MODEL_NAMES = {
     "grok-4.3": "Grok 4.3",
     "grok-4.6": "Grok 4.6",
     "muse-spark-1.3": "Muse Spark 1.3",
+    "muse-spark-1.3-contributor": "Muse Spark 1.3 Contributor",
     "gpt-6-luna": "GPT-6 Luna",
     "gpt-5.6-sol": "GPT-5.6 Sol",
 }
