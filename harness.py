@@ -24,6 +24,7 @@ META_RESPONSES_URL = "https://api.meta.ai/v1/responses"
 
 PRICES = {
     "grok-4.7": {"in": 2.0, "out": 6.0, "cache_read": 0.50, "cache_write": 0.0},
+    "grok-4.6": {"in": 2.0, "out": 6.0, "cache_read": 0.50, "cache_write": 0.0},
     "grok-4.3": {"in": 1.25, "out": 2.50, "cache_read": 0.20, "cache_write": 0.0},
     "claude-haiku-5-5": {
         "in": 0.10,
@@ -51,6 +52,8 @@ WORKFLOW_LAYERS = ("pms", "concierge", "support")
 CONFIG_ORDER = [
     "grok-4.7/low",
     "grok-4.7/high",
+    "grok-4.6/low",
+    "grok-4.6/medium",
     "grok-4.3/low",
     "grok-4.3/medium",
     "grok-4.3/high",
@@ -907,6 +910,8 @@ MODEL_NAMES = {
     "claude-fable-5-1": "Fable 5.1",
     "grok-4.7": "Grok 4.7",
     "grok-4.3": "Grok 4.3",
+    "grok-4.6": "Grok 4.6",
+    "muse-spark-1.3": "Muse Spark 1.3",
     "gpt-6-luna": "GPT-6 Luna",
     "gpt-5.6-sol": "GPT-5.6 Sol",
 }
@@ -1055,7 +1060,7 @@ def render_chart(summary: dict, which: str = "frozen") -> str:
     out += lines + points + label_svg
 
     present = []
-    for prov in ("anthropic", "grok", "openai"):
+    for prov in ("anthropic", "grok", "openai", "meta"):
         if any(c["provider"] == prov for c in cfgs):
             present.append(PROVIDER_STYLE[prov])
     legend = "".join(
@@ -1195,7 +1200,7 @@ def render_html(summary: dict) -> str:
             + "\n".join(wf_rows)
             + "</tbody></table></div>"
             + wf_note
-            + "<p class='muted'>Pack v2: concierge rule 1 allows several calls per response (v1 said one per turn, "
+            + "<p class='muted'>Pack v3. Since v1: concierge rule 1 allows several calls per response (v1 said one per turn, "
             "contradicting rules 3 and 4), and support's escalate flag is decided on its own instead of copying the "
             "disposition.</p>"
             + "<h3>Workflows per case</h3><p class='muted'>Cells are passes / runs. Hover a cell for fail reasons.</p>"
@@ -1275,7 +1280,7 @@ def render_html(summary: dict) -> str:
   <div class="wrap">
     <header>
       <span class="wordmark">HotelOps<span>-Bench</span></span>
-      <span class="eyebrow">eval · __STARTED__</span>
+      <span class="eyebrow">eval · __DATE__</span>
     </header>
     <p class="eyebrow" style="margin-top:28px">Tool use</p>
     <h1>HotelOps-Bench</h1>
@@ -1374,6 +1379,7 @@ def render_html(summary: dict) -> str:
         .replace("__CHART__", render_chart(summary))
         .replace("__WORKFLOWS__", wf_section)
         .replace("__STARTED__", html_escape(summary["started_at"]))
+        .replace("__DATE__", html_escape(summary["started_at"][:10]))
         .replace("__FINISHED__", html_escape(summary["finished_at"]))
     )
 

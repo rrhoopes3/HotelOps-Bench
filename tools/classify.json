@@ -14,7 +14,7 @@
           "disposition": {
             "type": "string",
             "enum": ["answer", "escalate", "unanswerable"],
-            "description": "answer = the knowledge base covers it; escalate = a human must act (policy, billing, legal, anger); unanswerable = not a product question or no facts available."
+            "description": "answer = an ordinary how-to or account question about the product; escalate = a human must act (policy, billing, legal, anger); unanswerable = not about the product, or spam."
           },
           "escalate": {
             "type": "boolean",
