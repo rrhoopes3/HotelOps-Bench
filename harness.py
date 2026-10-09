@@ -834,7 +834,7 @@ def summarize(records: list[dict], started: str, configs: list[dict], runs: int)
             continue
         if want_variant == "cache":
             observations.append(
-                "Prompt caching: Anthropic caches only when the request asks (cache_control); OpenAI and xAI cache "
+                "Prompt caching: Anthropic caches only when the request asks (cache_control); OpenAI, xAI and Meta cache "
                 "automatically. Haiku 5.5 workflow $ per 1,000 correct calls with caching vs without: %s. The uncached "
                 "rows are what the bench ran by default." % "; ".join(pairs)
             )

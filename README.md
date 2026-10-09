@@ -70,10 +70,14 @@ API keys are never written to output: request errors are redacted before logging
 | Model | Effort | Frozen 30 | Workflows | p95 workflow | $ / 1,000 correct workflow calls |
 |---|---|---|---|---|---|
 | claude-haiku-5-5 | low / medium | 100% / 100% | 99.1% / 100% | 4.4s / 4.8s | $0.91 / $0.94 |
+| claude-haiku-5-5 + prompt caching | low / medium | 100% / 100% | 100% / 100% | 4.6s / 5.3s | $0.35 / $0.35 |
 | gpt-6-luna | low / medium | 100% / 100% | 97.2% / 100% | 5.1s / 5.5s | $0.15 / $0.17 |
 | muse-spark-1.3 | low / medium | 100% / 100% | 99.1% / 100% | 31.9s / 33.2s | $8.26 / $9.81 |
 | grok-4.6 | low / medium | 100% / 100% | 96.3% / 100% | 10.7s / 22.9s | $6.17 / $6.13 |
 | grok-4.3 | low / medium | 100% / 100% | 96.3% / 92.6% | 9.8s / 17.0s | $2.68 / $2.65 |
+
+Anthropic caches only when the request sets `cache_control` (the `:cache` variant); OpenAI, xAI and Meta cache
+automatically, so compare costs against the cached Haiku row.
 
 Every config saturates the frozen 30; the workflow layers are where models differ.
 With 3 runs per case, a 1–3 point gap is within run-to-run noise. Full data:

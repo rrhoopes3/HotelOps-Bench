@@ -1,7 +1,7 @@
 {
   "title": "HotelOps-Bench results",
   "started_at": "2026-10-08T22:32:51Z",
-  "finished_at": "2026-10-09T02:09:06Z",
+  "finished_at": "2026-10-09T02:42:22Z",
   "runs": 3,
   "n_cases": 30,
   "configs": [
@@ -426,6 +426,146 @@
       "workflows_old_pack_only": false
     },
     {
+      "config": "claude-haiku-5-5+cache/low",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "low",
+      "variant": "cache",
+      "n": 90,
+      "pass": 90,
+      "rate": 1.0,
+      "safe_rate": 1.0,
+      "refusals": 0,
+      "provider_errors": 0,
+      "latency_p50_s": 0.986,
+      "latency_p95_s": 1.918,
+      "cost_usd": 0.0091,
+      "cost_per_success_usd": 0.0001,
+      "layers": {
+        "classify": {
+          "n": 30,
+          "pass": 30,
+          "rate": 1.0
+        },
+        "checkin": {
+          "n": 30,
+          "pass": 30,
+          "rate": 1.0
+        },
+        "traps": {
+          "n": 30,
+          "pass": 30,
+          "rate": 1.0
+        }
+      },
+      "tokens_in": 130483,
+      "tokens_out": 11989,
+      "tokens_reasoning": 0,
+      "workflows": {
+        "n": 108,
+        "pass": 108,
+        "rate": 1.0,
+        "safe_rate": 1.0,
+        "refusals": 0,
+        "provider_errors": 0,
+        "latency_p50_s": 2.736,
+        "latency_p95_s": 4.597,
+        "cost_usd": 0.0383,
+        "cost_per_success_usd": 0.00035,
+        "layers": {
+          "pms": {
+            "n": 33,
+            "pass": 33,
+            "rate": 1.0
+          },
+          "concierge": {
+            "n": 39,
+            "pass": 39,
+            "rate": 1.0
+          },
+          "support": {
+            "n": 36,
+            "pass": 36,
+            "rate": 1.0
+          }
+        },
+        "tokens_in": 756732,
+        "tokens_out": 44349,
+        "tokens_reasoning": 0
+      },
+      "workflows_old_pack_only": false
+    },
+    {
+      "config": "claude-haiku-5-5+cache/medium",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "medium",
+      "variant": "cache",
+      "n": 90,
+      "pass": 90,
+      "rate": 1.0,
+      "safe_rate": 1.0,
+      "refusals": 0,
+      "provider_errors": 0,
+      "latency_p50_s": 1.02,
+      "latency_p95_s": 2.118,
+      "cost_usd": 0.0087,
+      "cost_per_success_usd": 0.0001,
+      "layers": {
+        "classify": {
+          "n": 30,
+          "pass": 30,
+          "rate": 1.0
+        },
+        "checkin": {
+          "n": 30,
+          "pass": 30,
+          "rate": 1.0
+        },
+        "traps": {
+          "n": 30,
+          "pass": 30,
+          "rate": 1.0
+        }
+      },
+      "tokens_in": 130497,
+      "tokens_out": 13751,
+      "tokens_reasoning": 0,
+      "workflows": {
+        "n": 108,
+        "pass": 108,
+        "rate": 1.0,
+        "safe_rate": 1.0,
+        "refusals": 0,
+        "provider_errors": 0,
+        "latency_p50_s": 2.869,
+        "latency_p95_s": 5.309,
+        "cost_usd": 0.038,
+        "cost_per_success_usd": 0.00035,
+        "layers": {
+          "pms": {
+            "n": 33,
+            "pass": 33,
+            "rate": 1.0
+          },
+          "concierge": {
+            "n": 39,
+            "pass": 39,
+            "rate": 1.0
+          },
+          "support": {
+            "n": 36,
+            "pass": 36,
+            "rate": 1.0
+          }
+        },
+        "tokens_in": 767552,
+        "tokens_out": 49901,
+        "tokens_reasoning": 0
+      },
+      "workflows_old_pack_only": false
+    },
+    {
       "config": "gpt-6-luna/low",
       "provider": "openai",
       "model": "gpt-6-luna",
@@ -741,6 +881,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -793,6 +943,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -853,6 +1013,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -905,6 +1075,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -965,6 +1145,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1017,6 +1207,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1077,6 +1277,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1129,6 +1339,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1189,6 +1409,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1241,6 +1471,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1301,6 +1541,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1353,6 +1603,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1413,6 +1673,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1465,6 +1735,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1525,6 +1805,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1577,6 +1867,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1637,6 +1937,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1689,6 +1999,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1749,6 +2069,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1801,6 +2131,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1863,6 +2203,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -1915,6 +2265,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -1975,6 +2335,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2027,6 +2397,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2090,6 +2470,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2144,6 +2534,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2204,6 +2604,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2256,6 +2666,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2319,6 +2739,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2374,6 +2804,16 @@
           ]
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2434,6 +2874,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2486,6 +2936,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2545,6 +3005,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2612,6 +3082,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2666,6 +3146,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2726,6 +3216,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2778,6 +3278,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2838,6 +3348,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -2890,6 +3410,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -2952,6 +3482,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3004,6 +3544,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3064,6 +3614,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3120,6 +3680,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3172,6 +3742,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3238,6 +3818,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3290,6 +3880,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3350,6 +3950,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3402,6 +4012,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3462,6 +4082,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3514,6 +4144,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3573,6 +4213,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3640,6 +4290,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3692,6 +4352,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3752,6 +4422,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3804,6 +4484,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3864,6 +4554,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -3916,6 +4616,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -3976,6 +4686,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -4028,6 +4748,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -4088,6 +4818,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -4140,6 +4880,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -4200,6 +4950,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -4252,6 +5012,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -4312,6 +5082,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -4364,6 +5144,16 @@
           "fails": []
         },
         "claude-haiku-5-5/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
           "pass": 3,
           "n": 3,
           "fails": []
@@ -4424,6 +5214,16 @@
           "n": 3,
           "fails": []
         },
+        "claude-haiku-5-5+cache/low": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
+        "claude-haiku-5-5+cache/medium": {
+          "pass": 3,
+          "n": 3,
+          "fails": []
+        },
         "gpt-6-luna/low": {
           "pass": 3,
           "n": 3,
@@ -4448,9 +5248,10 @@
     }
   ],
   "observations": [
-    "Haiku 5.5: 180/180 native tool calls across low, medium. Zero refusals, zero provider errors.",
+    "Haiku 5.5: 360/360 native tool calls across low, medium. Zero refusals, zero provider errors.",
     "grok-4.3 classify: 60/60 native tool_calls (no JSON-in-content misses).",
     "gpt-6-luna classify: 60/60 native tool_calls (no JSON-in-content misses).",
+    "Prompt caching: Anthropic caches only when the request asks (cache_control); OpenAI and xAI cache automatically. Haiku 5.5 workflow $ per 1,000 correct calls with caching vs without: low $0.35 vs $0.91; medium $0.35 vs $0.94. The uncached rows are what the bench ran by default.",
     "The frozen 30 are single-shot function-calling cases; the workflow layers are multi-step on stubbed tools. Stubbed tools only: no live PMS, payments or mail."
   ],
   "notes": {
