@@ -1285,7 +1285,7 @@ def render_html(summary: dict) -> str:
     </header>
     <p class="eyebrow" style="margin-top:28px">Tool use</p>
     <h1>HotelOps-Bench</h1>
-    <p class="lede">A frozen 30-case tool-calling pack (support <code>classify_ticket</code>, kiosk check-in actions, traps) plus 36 multi-step workflow cases. Graded on tool choice and arguments, not prose. n = runs per case. See the tables for the configs in this run.</p>
+    <p class="lede">A frozen 30-case tool-calling pack (support <code>classify_ticket</code>, kiosk check-in actions, traps) plus 36 multi-step workflow cases. Graded on tool choice and arguments, not prose. n = runs per case. See the tables for the configs in this run. Cases, harness and grader are open source (MIT): <a href="https://github.com/rrhoopes3/HotelOps-Bench">github.com/rrhoopes3/HotelOps-Bench</a>.</p>
 
     <h2>Read this first</h2>
     __OBS__
